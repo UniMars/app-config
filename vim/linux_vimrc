@@ -1,0 +1,265 @@
+"-----------------------------------------------"
+""               基础设置                        "
+"-----------------------------------------------"
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+
+
+filetype plugin on
+filetype plugin indent on
+syntax on                           "打开语法高亮。自动识别代码，使用多种颜色显示。
+
+
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" 当重新打开文件时跳转最后打开位置
+
+set encoding=utf-8
+"set hidden                         " Hide buffers when they are abandoned
+set mouse=a                         " Enable mouse usage (all modes)
+"set shell=pwsh
+set background=dark
+set showmode                        "在底部显示，当前处于命令模式还是插入模式。
+set number                          "显示行号
+set relativenumber                  "显示光标所在的当前行的行号，其他行都为相对于该行的相对行号。
+set cursorline                     "光标当前行高亮
+set laststatus=2                    "是否显示状态栏。0 表示不显示，1 表示只在多窗口时显示，2 表示显示。
+set ruler                           "在状态栏显示光标的当前位置（位于哪一行哪一列）。
+set termguicolors                   "启用终端真色
+set t_Co=256
+colorscheme desert
+set showcmd                         "命令模式下，在底部显示，当前键入的指令
+set showtabline=2                   "始终显示标签页
+set listchars=tab:»■,trail:■        "如果行尾有多余的空格（包括 Tab 键），该配置将让这些空格显示成可见的小方块。
+set list                            "把制表符显示为^I ,用$标示行尾（使用list分辨尾部的字符是tab还是空格）
+"set fillchars+=vert:-              "设置横线为分割线
+"set fillchars+=stl:=
+set fillchars+=vert:\|
+"set fillchars+=stlnc:=
+set splitbelow
+set splitright
+set wildmenu
+set wildmode=longest:list,full
+"命令模式下，底部操作指令按下 Tab键自动补全。第一次按下Tab，会显示所有匹配的操作指令的清单；第二次按下
+"Tab，会依次选择各个指令。
+set vb
+set smartindent                     "智能缩进
+set autoindent                      "按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。
+set smarttab
+set tabstop=4                       "设置Tab宽度为4个空格
+set shiftwidth=4                    "设定自动缩进为4个字符
+set softtabstop=4
+set expandtab                       "将制表符转换为空格
+set backspace=indent,eol,start      "配置退格键删除制表符和空格
+set completeopt=longest,menu        "自动补全配置让Vim补全菜单行为跟IDE一致
+
+set clipboard^=unnamed,unnamedplus  "默认使用系统剪切板
+"set autowrite                      " Automatically save before commands like :next and :make
+set autoread                        "打开文件自动检测外部更改
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
+set undodir=~/.vim/.undo//
+"set nobackup                       "不创建备份文件
+"默认情况下，文件保存时，会额外创建一个备份文件，它的文件名是在原文件名的末尾，再添加一个波浪号（〜）
+"set undofile                       "保留撤销历史。
+"Vim会在编辑时保存操作历史，用来供用户撤消更改。默认情况下，操作记录只在本次编辑时有效，一旦编辑结束、文件关闭，操作历史就消失了。打开这个设置，可以在文件关闭后，操作记录保留在一个文件里面，继续存在。这意味着，重新打开一个文件，可以撤销上一次编辑时的操作。撤消文件是跟原文件保存在一起的隐藏文件，文件名以.un~开头。
+
+set nocompatible        "去除vi一致性
+"set ambiwidth=double    "解决中文标点显示的问题
+"set wrap               "自动折行
+set linebreak           "只有遇到指定的符号（如空格 连词号&其他标点）才折行=>不会在单词内部折行。
+
+set showmatch           "光标遇到圆、方、大括号时，自动高亮对应的另一个括号。
+set hlsearch            "搜索时，高亮显示匹配结果。
+set incsearch           "输入搜索模式时，每输入一个字符，就自动跳到第一个匹配的结果。
+"set ignorecase         "搜索时忽略大小写
+set smartcase
+"如果同时打开了ignorecase，那么对于只有一个大写字母的搜索词，将大小写敏感；其他情况都是大小写不敏感。比如，搜索Test时，将不匹配test；搜索test时，将匹配Test。
+
+" 设置代码折叠---------------------------------
+set nofoldenable             "启动 vim 时关闭折叠代码
+set foldmethod=indent        "设置语法折叠
+setlocal foldlevel=99        "设置折叠层数
+nnoremap <space> za          "用空格键来开关折叠
+
+" 设置光标样式-------------------------------
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"
+"set spell spelllang=en_us   "打开英语单词的拼写检查。
+
+" 设置状态行-----------------------------------
+" 设置状态行显示常用信息
+" %F 完整文件路径名
+" %m 当前缓冲被修改标记
+" %m 当前缓冲只读标记
+" %h 帮助缓冲标记
+" %w 预览缓冲标记
+" %Y 文件类型
+" %b ASCII值
+" %B 十六进制值
+" %l 行数
+" %v 列数
+" %p 当前行数占总行数的的百分比
+" %L 总行数
+" %{...} 评估表达式的值，并用值代替
+" %{"[fenc=".(&fenc==""?&enc:&fenc).((exists("+bomb") && &bomb)?"+":"")."]"} 显示文件编码
+" %{&ff} 显示文件类型
+"hi StatusLine cterm=Bold ctermbg=red guibg=red
+
+set statusline=%1*%F\ 
+set statusline+=%2*%m%r%h%w\ %=
+set statusline+=%3*\ %Y\ \|\ 
+set statusline+=%4*%{\"\".(\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\&bomb)?\"+\":\"\").\"\"}\ \|\ 
+set statusline+=%5*%{(&fileformat=='dos')?'CRLF':'LF'}\ \|\ 
+set statusline+=%6*[%l:%v]\ 
+set statusline+=%7*%p%%\ in\ %L\ Line\ 
+
+
+
+hi User1 cterm=none ctermbg=cyan ctermfg=yellow guibg=#007acc guifg=yellow
+hi User2 cterm=none ctermbg=cyan ctermfg=lightgrey guibg=#007acc guifg=lightgrey
+hi User3 cterm=none ctermbg=cyan ctermfg=white guibg=#007acc guifg=white
+hi User4 cterm=bold ctermbg=cyan ctermfg=white guibg=#007acc guifg=white
+hi User5 cterm=bold ctermbg=cyan ctermfg=white  guibg=#007acc guifg=white
+hi User6 cterm=bold ctermbg=cyan ctermfg=white  guibg=#007acc guifg=white
+hi User7 cterm=none ctermfg=cyan ctermbg=white  guibg=#007acc guifg=white
+
+
+" 设置tab栏-------------------------------------------------
+
+" 选中的tab颜色
+hi SelectTabLine term=Bold cterm=Bold ctermfg=5 ctermbg=7 guifg=DarkYellow guibg=LightGrey
+hi SelectPageNum cterm=None ctermfg=5 ctermbg=5 guifg=Red guibg=LightGrey
+hi SelectWindowsNum cterm=None ctermfg=5 ctermbg=7 guifg=DarkCyan guibg=LightGrey
+" 未选中状态的tab
+hi NormalTabLine cterm=None ctermfg=4 ctermbg=6 guifg=DarkGray guibg=#6c6c6c
+hi NormalPageNum cterm=None ctermfg=4 ctermbg=6 guifg=DarkGray guibg=#6c6c6c
+hi NormalWindowsNum cterm=None ctermfg=4 ctermbg=6 guifg=DarkGray guibg=#6c6c6c
+" tab栏背景色
+hi TabLineFill term=reverse ctermfg=5 ctermbg=7 guibg=#6c6c6c
+hi TabLineCross cterm=Bold ctermfg=DarkRed guifg=Red guibg=#6c6c6c
+
+function MyTabLine()
+    let s = ''
+    for i in range(tabpagenr('$'))
+        " select the highlighting
+        let hlTab = ''
+        let select = 0
+        if i + 1 == tabpagenr()
+            let hlTab = '%#SelectTabLine#'
+            let s ..= hlTab . '⎡%#SelectPageNum#%T' . (i + 1) . hlTab
+            let select = 1
+        else
+            let hlTab = '%#NormalTabLine#'
+            let s ..= hlTab . "⎡%#NormalTabLine#%T" . (i + 1) . hlTab
+        endif
+
+        " the label is made by MyTabLabel()
+        let s .= ' %<%{MyTabLabel(' . (i + 1) . ', ' . select . ')} '
+        "追加窗口数量
+        let wincount = tabpagewinnr(i + 1, '$')
+        if wincount > 1
+            if select == 1
+                let s .= "%#SelectWindowsNum#" . wincount
+            else
+                let s .= "%#NormalWindowsNum#" . wincount
+            endif
+        endif
+        let s .= hlTab . "⎦"
+    endfor
+
+    " after the last tab fill with TabLineFill and reset tab page nr
+    let s ..= '%#TabLineFill#%T'
+
+    " right-align the label to close the current tab page
+    if tabpagenr('$') > 1
+      let s ..= '%=%#TabLineCross#%999X░❨X❩'
+    endif
+
+    return s
+endfunction
+
+" Now the MyTabLabel() function is called for each tab page to get its label. >
+function MyTabLabel(n, select)
+    let label = ''
+    let buflist = tabpagebuflist(a:n)
+
+    for bufnr in buflist
+        if getbufvar(bufnr, "&modified")
+            let label = '+'
+            break
+        endif
+    endfor
+
+    let winnr = tabpagewinnr(a:n)
+    let name = bufname(buflist[winnr - 1])
+
+    if name == ''
+        if &buftype == 'quickfix'
+            let name = '[Quickfix List]'
+        else
+            let name = '[No Name]'
+        endif
+    else
+        let name = fnamemodify(name, ':t')
+    endif
+
+    let label .= name
+    return label
+endfunction
+
+set tabline=%!MyTabLine()
+
+
+" netrw相关设置--------------------
+
+let g:netrw_banner = 0          "设置是否显示横幅
+let g:netrw_liststyle = 3       "设置目录列表的样式：树形
+let g:netrw_browse_split = 2    "在之前的窗口编辑文件，类似按下大写 P
+let g:netrw_altv = 1            "水平分割时，文件浏览器始终显示在左边
+let g:netrw_winsize = 25        "设置文件浏览器窗口宽度为 25%
+"自动打开文件浏览器 netrw
+"augroup ProjectDrawer
+"    autocmd!
+"    autocmd VimEnter * :Vexplore
+"augroup END
+nnoremap <SPACE>f :Lexplore<CR>    " 打开或关闭目录树
+
+
+"-----------------------------------------------"
+""               自定义功能                      "
+"-----------------------------------------------"
+
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+
+"" 快捷键绑定-------------------------
+let mapleader='\'
+" 窗口移动快捷键
+noremap <TAB>w <C-w>w
+noremap <TAB><left> <C-w><left>
+noremap <TAB>h <C-w>h
+noremap <TAB><right> <C-w><right>
+noremap <TAB>l <C-w>l
+noremap <TAB><up> <C-w><up>
+noremap <TAB>k <C-w>k
+noremap <TAB><down> <C-w><down>
+noremap <TAB>j <C-w>j
+" 使用方向键切换buffer
+noremap <Leader><left> :bp<CR>
+noremap <Leader><right> :bn<CR>
+" 使用方括号切换tab
+noremap <Leader>] :tabnext<CR>
+noremap <Leader>[ :tabprevious<CR>
+noremap <Leader>s :w<CR>
+noremap <Leader>q :q<CR>
+noremap <Leader>Q :qall<CR>
+noremap <Leader>x :close<CR>
+noremap <Leader>t :term<CR>
+noremap <Leader>j :m+<CR>
+noremap <Leader><down> :m+<CR>
+noremap <Leader>k :m--<CR>
+noremap <Leader><up> :m--<CR>
+"noremap <Leader>3j :m+3<CR>
+
