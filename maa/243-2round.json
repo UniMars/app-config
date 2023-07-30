@@ -1,0 +1,254 @@
+{
+    "title": "243 摸鱼组合，一天两换",
+    "description": "\n作业作者：MistEO\n感谢公孙长乐大佬提供数据及方案支持！",
+    "plans": [
+        {
+            "name": "早班组",
+            "description": "最高效率长班\n下次换班请在约16小时后进行",
+            "period":[
+                [
+                    "04:00",
+                    "16:00"
+                ]
+            ],
+            "drones": {
+                "enable": true,
+                "room": "manufacture",
+                "index": 3,
+                "order": "pre"
+            },
+            "rooms": {
+                "control": [
+                    {
+                        "operators": [
+                            "布丁",
+                            "诗怀雅",
+                            "玛恩纳",
+                            "临光",
+                            "杜宾"
+                        ]
+                    }
+                ],
+                "trading": [
+                    {
+                        "operators": [
+                            "巫恋",
+                            "龙舌兰",
+                            "卡夫卡"
+                        ],
+                        "product": "LMD"
+                    },
+                    {
+                        "operators": [
+                            "能天使",
+                            "德克萨斯",
+                            "拉普兰德"
+                        ],
+                        "product": "LMD"
+                    }
+                ],
+                "manufacture": [
+                    {
+                        "operators":[
+                            "夜烟",
+                            "清流",
+                            "调香师"
+                        ],
+                        "product": "Pure Gold"
+                    },
+                    {
+                        "operators": [
+                            "斑点",
+                            "至简",
+                            "白面鸮"
+                        ],
+                        "product": "Pure Gold"
+                    },
+                    {
+                        "operators": [
+                            "白雪",
+                            "霜叶",
+                            "铅踝"
+                        ],
+                        "product": "Battle Record"
+                    },
+                    {
+                        "operators":[
+                            "断罪者",
+                            "Castle-3",
+                            "史都华德"
+                        ],
+                        "product": "Battle Record"
+                    }
+                ],
+                "power": [
+                    {
+                        "operators": [
+                            "Lancet-2"
+                        ]
+                    },
+                    {
+                        "operators": [
+                            "THRM-EX"
+                        ]
+                    },
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    }
+                ],
+                "hire": [
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    }
+                ],
+                "meeting": [
+                    {
+                        "candidates": [
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "晚组",
+            "description": "次高效替补 1 班\n下次换班请在约4小时后进行",
+            "period":[
+                [
+                    "00:00",
+                    "3:59"
+                ],
+                [
+                    "18:00",
+                    "23:59"
+                ]
+            ],
+            "drones": {
+                "room": "manufacture",
+                "index": 1,
+                "order": "pre"
+            },
+            "rooms": {
+                "control": [
+                    {
+                        "operators": [
+                            "阿米娅",
+                            "凯尔希",
+                            "陈",
+                            "炎狱炎熔",
+                            "灵知"
+                        ]
+                    }
+                ],
+                "trading": [
+                    {
+                        "operators": [
+                            "但书",
+                            "银灰",
+                            "孑"
+                        ],
+                        "product": "LMD"
+                    },
+                    {
+                        "operators": [
+                            "伺夜",
+                            "石英",
+                            "古米"
+                        ],
+                        "product": "LMD"
+                    }
+                ],
+                "manufacture": [
+                    {
+                        "operators": [
+                            "贝娜",
+                            "泡泡",
+                            "火神"
+                        ],
+                        "product": "Pure Gold"
+                    },
+                    {
+                        "operators": [
+                            "砾",
+                            "槐琥",
+                            "香草"
+                        ],
+                        "product": "Pure Gold"
+                    },
+                    {
+                        "operators":[
+                            "红豆",
+                            "食铁兽",
+                            "石棉"
+                        ],
+                        "product": "Battle Record"
+                    },
+                    {
+                        "operators": [
+                            "稀音",
+                            "豆苗",
+                            "红云"
+                        ],
+                        "product": "Battle Record"
+                    }
+                ],
+                "power": [
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    },
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    },
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    }
+                ],
+                "hire": [
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    }
+                ],
+                "meeting": [
+                    {
+                        "candidates": [
+                        ]
+                    }
+                ],
+                "dormitory": [
+                    {
+                        "operators": [
+                            "铅踝"
+                        ],
+                        "autofill": true
+                    },
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    },
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    },
+                    {
+                        "operators": [
+                        ],
+                        "autofill": true
+                    }
+                ]
+            }
+        }
+    ]
+}

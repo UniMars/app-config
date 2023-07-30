@@ -1,19 +1,19 @@
 #oh-my-posh --init --shell pwsh --config "C:\Users\Lenovo\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_classic.omp.json" | Invoke-Expression
-oh-my-posh --init --shell pwsh --config "C:\Users\Lenovo\AppData\Local\Programs\oh-my-posh\themes\iterm3.omp.json" | Invoke-Expression
+oh-my-posh --init --shell pwsh --config "$env:POSH_THEMES_PATH\iterm3.omp.json" | Invoke-Expression
 function Set-EnvVar {
     $env:POSH=$(Get-Date).ToString('H:mm:ss')
 }
 
 Import-Module posh-git
 
-New-Alias -Name 'Set-PoshContext' -Value 'Set-EnvVar' -Scope Global -Force
-Set-PSReadLineOption -PredictionSource HistoryAndPlugin # 设置预测文本来源为历史记录
+New-Alias -Name 'Set-PoshContext' -Value 'Set-EnvVar' -Scope Global -Force  # NOTE: 可能会在win10上出bug
+Set-PSReadLineOption -PredictionSource HistoryAndPlugin                     # 设置预测文本来源为历史记录
 Set-PsReadLineOption -PredictionViewStyle InlineView
 Set-PsReadLineOption -BellStyle Visual
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete # 设置 Tab 键补全
-Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function Complete # 设置 Ctrl+d 为菜单补全和 Intellisense
-#Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function SearchChar # 设置 Ctrl+f 为搜索
-Set-PSReadLineKeyHandler -Key "Ctrl+d" -Function RevertLine # 设置 Ctrl+d 为
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete                    # 设置 Tab 键补全
+Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function Complete                   # 设置 Ctrl+d 为菜单补全和 Intellisense
+#Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function SearchChar                # 设置 Ctrl+f 为搜索
+Set-PSReadLineKeyHandler -Key "Ctrl+d" -Function RevertLine                 # 设置 Ctrl+d 为
 New-Alias -Name "sublime" -Value "C:/Program Files/Sublime Text/sublime_text.exe"
 New-Alias -Name 'vim' -Value '~/AppData/Local/Programs/Neovim/bin/nvim.exe'
 New-Alias -Name 'nvim' -Value '~/AppData/Local/Programs/Neovim/bin/nvim.exe'
